@@ -9,7 +9,7 @@ class AddPost extends Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
     const { title, content } = this.state;
@@ -28,8 +28,11 @@ class AddPost extends Component {
       comments: 0,
       createdAt: new Date(),
     };
-
-    firestore.collection("posts").add(post);
+    try {
+      firestore.collection("posts").add(post);
+    } catch (error) {
+      console.error("Error adding post!", error.message);
+    }
 
     this.setState({ title: "", content: "" });
   };
