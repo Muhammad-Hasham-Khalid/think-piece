@@ -6,7 +6,6 @@ import { signOut } from "../firebase";
 import { Link } from "react-router-dom";
 
 const CurrentUser = ({ displayName, photoURL, email, createdAt, children }) => {
-  console.log(createdAt);
   return (
     <section className="CurrentUser">
       <div className="CurrentUser--profile">
@@ -16,7 +15,9 @@ const CurrentUser = ({ displayName, photoURL, email, createdAt, children }) => {
             <h2>{displayName}</h2>
           </Link>
           <p className="email">{email}</p>
-          <p className="created-at">{moment(createdAt.toDate && createdAt.toDate()).calendar()}</p>
+          <p className="created-at">
+            {moment(createdAt.toDate && createdAt.toDate()).calendar()}
+          </p>
         </div>
       </div>
       <div>
